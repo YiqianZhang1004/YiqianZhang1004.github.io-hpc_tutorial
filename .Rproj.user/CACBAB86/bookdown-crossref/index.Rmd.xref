@@ -10,5 +10,9 @@ h1:samtools Samtools
 h2:use-samtools Use Samtools
 h2:install-samtools Install Samtools
 h1:qiime-2 QIIME 2
+h2:use-qiime-2 Use QIIME 2
+h2:available-qiime-2-databases Available Qiime 2 Databases
 h1:kraken2 Kraken2
+h2:use-kraken2 Use Kraken2
+h2:available-kraken2-databases Available Kraken2 Databases
 

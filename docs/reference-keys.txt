@@ -9,4 +9,8 @@ samtools
 use-samtools
 install-samtools
 qiime-2
+use-qiime-2
+available-qiime-2-databases
 kraken2
+use-kraken2
+available-kraken2-databases

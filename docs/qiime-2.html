@@ -155,8 +155,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="samtools.html"><a href="samtools.html#use-samtools"><i class="fa fa-check"></i><b>5.1</b> Use Samtools</a></li>
 <li class="chapter" data-level="5.2" data-path="samtools.html"><a href="samtools.html#install-samtools"><i class="fa fa-check"></i><b>5.2</b> Install Samtools</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="qiime-2.html"><a href="qiime-2.html"><i class="fa fa-check"></i><b>6</b> QIIME 2</a></li>
-<li class="chapter" data-level="7" data-path="kraken2.html"><a href="kraken2.html"><i class="fa fa-check"></i><b>7</b> Kraken2</a></li>
+<li class="chapter" data-level="6" data-path="qiime-2.html"><a href="qiime-2.html"><i class="fa fa-check"></i><b>6</b> QIIME 2</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="qiime-2.html"><a href="qiime-2.html#use-qiime-2"><i class="fa fa-check"></i><b>6.1</b> Use QIIME 2</a></li>
+<li class="chapter" data-level="6.2" data-path="qiime-2.html"><a href="qiime-2.html#available-qiime-2-databases"><i class="fa fa-check"></i><b>6.2</b> Available Qiime 2 Databases</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="kraken2.html"><a href="kraken2.html"><i class="fa fa-check"></i><b>7</b> Kraken2</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="kraken2.html"><a href="kraken2.html#use-kraken2"><i class="fa fa-check"></i><b>7.1</b> Use Kraken2</a></li>
+<li class="chapter" data-level="7.2" data-path="kraken2.html"><a href="kraken2.html#available-kraken2-databases"><i class="fa fa-check"></i><b>7.2</b> Available Kraken2 Databases</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -181,6 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 6</span> QIIME 2<a href="qiime-2.html#qiime-2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><a href="https://qiime2.org/">QIIME 2 Website</a></p>
 <p><strong>Qiime 2</strong> (Quantitative Insights Into Microbial Ecology 2) is a powerful, open-source bioinformatics platform designed for performing microbiome analysis from raw DNA sequencing data. It provides tools for the analysis and interpretation of high-throughput community sequencing data, facilitating tasks such as quality control, taxonomic classification, diversity analysis, and visualization. Qiime 2 supports a modular plugin system, enabling users to integrate various analytical methods and customize workflows, making it an essential tool for researchers studying microbial ecology, diversity, and function.</p>
+<div id="use-qiime-2" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Use QIIME 2<a href="qiime-2.html#use-qiime-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Qiime 2 is already installed in the Lab Group Conda environment. To use it, follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Activate Conda:
@@ -197,6 +207,16 @@ Activate the Qiime 2 environment by running:</li>
 Run the following command to check if Qiime 2 is installed and to see the version number:</li>
 </ol>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="qiime-2.html#cb17-1" tabindex="-1"></a><span class="ex">qiime</span> <span class="at">--version</span></span></code></pre></div>
+</div>
+<div id="available-qiime-2-databases" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Available Qiime 2 Databases<a href="qiime-2.html#available-qiime-2-databases" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A pre-trained classifier database for Qiime 2 is available in the Group Directory. This database can be found under the following directory:</p>
+<p><code>/mnt/vstor/SOM_PQHS_LXZ716/Reference</code></p>
+<p>The available database includes:</p>
+<ul>
+<li><code>QIIME2_Pre-trained_Classifier</code>: A pre-trained classifier for taxonomic classification of microbial sequences, optimized for use with Qiime 2.</li>
+</ul>
+</div>
 </div>
             </section>
 
