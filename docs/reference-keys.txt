@@ -1,0 +1,12 @@
+read-first
+lab-group-directory
+key-areas-in-cwru-hpc-ondemand-web-portal
+bioinformatics-package-installation-status
+submitting-batch-jobs
+conda
+woltka
+samtools
+use-samtools
+install-samtools
+qiime-2
+kraken2
