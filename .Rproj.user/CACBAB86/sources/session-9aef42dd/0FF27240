@@ -3,7 +3,7 @@
     "path": "~/Desktop/HPC_Tutorials/index.Rmd",
     "project_path": "index.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "2888796000",
     "contents": "",
     "dirty": false,
     "created": 1721314461134.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "16,0",
-        "scrollLine": "0"
+        "cursorPosition": "21,0",
+        "scrollLine": "11"
     },
     "folds": "",
-    "lastKnownWriteTime": 1721323874,
+    "lastKnownWriteTime": 1721335171,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1721323874229,
+    "last_content_update": 1721335171989,
     "read_only": false,
     "read_only_alternatives": []
 }
