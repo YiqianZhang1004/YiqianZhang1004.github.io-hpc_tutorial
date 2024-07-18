@@ -8,9 +8,7 @@ bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::gitbook,
-  set in the _output.yml file.
+  This document is a concise guide for CINEMA Research Group members on using the HPC resources. It includes instructions for accessing the HPC cluster, submitting SLURM batch jobs, and using key bioinformatics tools like Woltka, Samtools, Qiime 2, and Kraken2, ensuring efficient utilization of HPC for research tasks.
 link-citations: yes
 #github-repo: rstudio/bookdown-demo
 ---
