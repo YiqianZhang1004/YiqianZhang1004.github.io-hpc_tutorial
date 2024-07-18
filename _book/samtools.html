@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Samtools | HPC Tutorial in CINEMA</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Samtools | HPC Tutorial in CINEMA" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Samtools | HPC Tutorial in CINEMA" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Yiqian Zhang" />
+
+
+<meta name="date" content="2024-07-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="woltka.html"/>
+<link rel="next" href="qiime-2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">HPC Tutorial in CINEMA</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Read First</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#lab-group-directory"><i class="fa fa-check"></i><b>1.1</b> Lab Group Directory</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#key-areas-in-cwru-hpc-ondemand-web-portal"><i class="fa fa-check"></i><b>1.2</b> Key Areas in CWRU HPC OnDemand Web Portal</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#bioinformatics-package-installation-status"><i class="fa fa-check"></i><b>1.3</b> Bioinformatics Package Installation Status</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="submitting-batch-jobs.html"><a href="submitting-batch-jobs.html"><i class="fa fa-check"></i><b>2</b> Submitting Batch Jobs</a></li>
+<li class="chapter" data-level="3" data-path="conda.html"><a href="conda.html"><i class="fa fa-check"></i><b>3</b> Conda</a></li>
+<li class="chapter" data-level="4" data-path="woltka.html"><a href="woltka.html"><i class="fa fa-check"></i><b>4</b> Woltka</a></li>
+<li class="chapter" data-level="5" data-path="samtools.html"><a href="samtools.html"><i class="fa fa-check"></i><b>5</b> Samtools</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="samtools.html"><a href="samtools.html#use-samtools"><i class="fa fa-check"></i><b>5.1</b> Use Samtools</a></li>
+<li class="chapter" data-level="5.2" data-path="samtools.html"><a href="samtools.html#install-samtools"><i class="fa fa-check"></i><b>5.2</b> Install Samtools</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="qiime-2.html"><a href="qiime-2.html"><i class="fa fa-check"></i><b>6</b> QIIME 2</a></li>
+<li class="chapter" data-level="7" data-path="kraken2.html"><a href="kraken2.html"><i class="fa fa-check"></i><b>7</b> Kraken2</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">HPC Tutorial in CINEMA</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="samtools" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Samtools<a href="samtools.html#samtools" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="https://www.htslib.org/">Samtools Website</a></p>
+<p><strong>Samtools</strong> is a suite of programs used for interacting with high-throughput sequencing data, particularly in the context of microbiome research. It provides essential tools for manipulating and analyzing BAM, SAM, and CRAM files, which are formats for storing large nucleotide sequence alignments. In microbiome studies, Samtools is used to sort, index, and filter alignment data, enabling researchers to efficiently process and analyze metagenomic and metatranscriptomic sequences, assess microbial diversity, and identify microbial taxa and functional genes within complex microbial communities.</p>
+<div id="use-samtools" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Use Samtools<a href="samtools.html#use-samtools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span style="color: red;">Samtools already installed in group directory, you can just update your path to use samtools by running the following: <span></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="samtools.html#cb7-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/vstor/SOM_PQHS_LXZ716/software/Samtools/bin:<span class="va">$PATH</span></span></code></pre></div>
+<p>To check if Samtools has been successfully installed, you can perform the following steps:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="samtools.html#cb8-1" tabindex="-1"></a><span class="ex">samtools</span> <span class="at">--version</span></span></code></pre></div>
+</div>
+<div id="install-samtools" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Install Samtools<a href="samtools.html#install-samtools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you want to download and install your own Samtools, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Download the Source Code:</li>
+</ol>
+<p>Download the source code for Samtools from the official website:</p>
+<p><a href="https://www.htslib.org/download/">https://www.htslib.org/download/</a></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Upload to HPC:
+Upload the downloaded file to your HPC environment.</p></li>
+<li><p>Unzip the File:
+Once uploaded, unzip the file using the following command:</p></li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="samtools.html#cb9-1" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xvjf</span> samtools-1.20.tar.bz2</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Change Directory:
+Navigate to the Samtools directory:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="samtools.html#cb10-1" tabindex="-1"></a><span class="bu">cd</span> samtools-1.20</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>Configure the Installation:
+Configure the installation by running (replace <code>/where/to/install</code> with your desired installation directory):</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="samtools.html#cb11-1" tabindex="-1"></a><span class="ex">./configure</span> <span class="at">--prefix</span><span class="op">=</span>/where/to/install</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>Compile the Source Code:
+Compile the source code using:</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="samtools.html#cb12-1" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div>
+<ol start="7" style="list-style-type: decimal">
+<li>Install Samtools:
+Install Samtools by running:</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="samtools.html#cb13-1" tabindex="-1"></a><span class="fu">make</span> install</span></code></pre></div>
+<ol start="8" style="list-style-type: decimal">
+<li>Update Your PATH:
+The executable programs will be installed in a <code>bin</code> subdirectory under your specified prefix. Add this directory to your <code>$PATH</code> to access the programs easily (replace <code>/where/to/install</code> with your specified installation directory):</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="samtools.html#cb14-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/where/to/install/bin:<span class="va">$PATH</span></span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="woltka.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="qiime-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
