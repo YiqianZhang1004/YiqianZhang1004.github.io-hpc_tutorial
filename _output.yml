@@ -6,5 +6,5 @@ bookdown::gitbook:
         <li><a href="./">HPC Tutorial in CINEMA</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
+    edit: https://github.com/YiqianZhang1004/hpc_tutorial%s
     download: ["pdf", "epub"]
