@@ -1,4 +1,4 @@
-read-first
+getting-started
 lab-group-directory
 key-areas-in-cwru-hpc-ondemand-web-portal
 bioinformatics-package-installation-status
