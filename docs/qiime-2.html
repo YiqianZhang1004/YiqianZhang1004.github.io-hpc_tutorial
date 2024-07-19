@@ -250,8 +250,8 @@ Run the following command to check if Qiime 2 is installed and to see the versio
 <span id="cb18-9"><a href="qiime-2.html#cb18-9" tabindex="-1"></a><span class="ex">288658590</span>    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288658590_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288658590_R2.fastq.gz</span>
 <span id="cb18-10"><a href="qiime-2.html#cb18-10" tabindex="-1"></a><span class="ex">288662694</span>    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288662694_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288662694_R2.fastq.gz</span>
 <span id="cb18-11"><a href="qiime-2.html#cb18-11" tabindex="-1"></a><span class="ex">288696281</span>    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288696281_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288696281_R2.fastq.gz</span></code></pre></div>
-<p><strong>Importing the Data</strong>
-Use the following command to import the data into QIIME 2:</p>
+<p><strong>Importing the Data</strong></p>
+<p>Use the following command to import the data into QIIME 2:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="qiime-2.html#cb19-1" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="dt">\</span></span>
 <span id="cb19-2"><a href="qiime-2.html#cb19-2" tabindex="-1"></a>  <span class="at">--type</span> <span class="st">&#39;SampleData[PairedEndSequencesWithQuality]&#39;</span> <span class="dt">\</span></span>
 <span id="cb19-3"><a href="qiime-2.html#cb19-3" tabindex="-1"></a>  <span class="at">--input-path</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/manifest.tsv <span class="dt">\</span></span>
@@ -270,6 +270,10 @@ Use the following command to import the data into QIIME 2:</p>
 <li><code>--o-visualization</code>: Output file for the summary visualization.</li>
 </ul>
 <p>The output visualization (<code>demux-summary.qzv</code>) provides interactive plots of the quality scores across all sequences. This information is crucial for determining the appropriate truncation lengths (<code>--p-trunc-len-f</code> and <code>--p-trunc-len-r</code>) to use in the denoising step.</p>
+<div class="float">
+<img src="demux_summary.png" alt="demux-summary.qzv" />
+<div class="figcaption">demux-summary.qzv</div>
+</div>
 <p><strong>How to Choose Truncation Lengths:</strong></p>
 <ol style="list-style-type: decimal">
 <li>Open the Visualization:</li>
@@ -334,6 +338,10 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <li><code>--m-input-file</code>: Input file with metadata to be visualized.</li>
 <li><code>--o-visualization</code>: Output file for the visualization.</li>
 </ul>
+<div class="float">
+<img src="taxonomy.png" alt="taxonomy.qzv" />
+<div class="figcaption">taxonomy.qzv</div>
+</div>
 </div>
 <div id="feature-table-summary" class="section level3 hasAnchor" number="6.3.6">
 <h3><span class="header-section-number">6.3.6</span> Feature Table Summary<a href="qiime-2.html#feature-table-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -347,6 +355,14 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <li><code>--o-visualization</code>: Output file for the summary visualization.</li>
 <li><code>--m-sample-metadata-file</code>: Metadata file associated with the samples.</li>
 </ul>
+<div class="float">
+<img src="table.png" alt="table.qzv - Overview" />
+<div class="figcaption">table.qzv - Overview</div>
+</div>
+<div class="float">
+<img src="table_his.png" alt="table.qzv - Interactive Sample Detail" />
+<div class="figcaption">table.qzv - Interactive Sample Detail</div>
+</div>
 </div>
 <div id="phylogenetic-tree-construction" class="section level3 hasAnchor" number="6.3.7">
 <h3><span class="header-section-number">6.3.7</span> Phylogenetic Tree Construction<a href="qiime-2.html#phylogenetic-tree-construction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -379,6 +395,10 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <li><code>--m-metadata-file</code>: Metadata file associated with the samples.</li>
 <li><code>--o-visualization</code>: Output file for the bar plot visualization.</li>
 </ul>
+<div class="float">
+<img src="taxa-bar-plots.png" alt="taxa-bar-plots.qzv" />
+<div class="figcaption">taxa-bar-plots.qzv</div>
+</div>
 </div>
 </div>
 </div>

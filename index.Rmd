@@ -302,6 +302,7 @@ sample-id    forward-absolute-filepath                    reverse-absolute-filep
 ```
 
 **Importing the Data**
+
 Use the following command to import the data into QIIME 2:
 ```bash
 qiime tools import \
@@ -325,6 +326,8 @@ qiime demux summarize \
 - `--o-visualization`: Output file for the summary visualization.
 
 The output visualization (`demux-summary.qzv`) provides interactive plots of the quality scores across all sequences. This information is crucial for determining the appropriate truncation lengths (`--p-trunc-len-f` and `--p-trunc-len-r`) to use in the denoising step.
+
+![demux-summary.qzv](demux_summary.png)
 
 **How to Choose Truncation Lengths:**
 
@@ -384,6 +387,8 @@ qiime feature-classifier classify-sklearn \
 - `--i-reads`: Input file with representative sequences.
 - `--o-classification`: Output file with taxonomic classification results.
 
+
+
 ### Metadata Visualization
 
 This step creates a visualization of the taxonomic classification results, allowing you to review the taxonomy assignments.
@@ -396,6 +401,8 @@ qiime metadata tabulate \
 
 - `--m-input-file`: Input file with metadata to be visualized.
 - `--o-visualization`: Output file for the visualization.
+
+![taxonomy.qzv](taxonomy.png)
 
 ### Feature Table Summary
 
@@ -411,6 +418,10 @@ qiime feature-table summarize \
 - `--i-table`: Input feature table file.
 - `--o-visualization`: Output file for the summary visualization.
 - `--m-sample-metadata-file`: Metadata file associated with the samples.
+
+![table.qzv - Overview](table.png)
+
+![table.qzv - Interactive Sample Detail](table_his.png)
 
 ### Phylogenetic Tree Construction
 
@@ -447,6 +458,8 @@ qiime taxa barplot \
 - `--i-taxonomy`: Input file with taxonomic classification.
 - `--m-metadata-file`: Metadata file associated with the samples.
 - `--o-visualization`: Output file for the bar plot visualization.
+
+![taxa-bar-plots.qzv](taxa-bar-plots.png)
 
 # Kraken2
 
