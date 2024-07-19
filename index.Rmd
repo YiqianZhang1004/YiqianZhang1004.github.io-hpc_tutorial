@@ -19,6 +19,7 @@ The **CINEMA (Clinical Informatics, NEuroimaging, and Multiomics Analysis)** Gro
 
 ![](ClevelandMedicalCenter.jpg)
 
+[![](PI.png)](https://cwru-cinema.com/people/)
 
 
 # Getting Started
