@@ -353,6 +353,8 @@ In this example, you might choose --p-trunc-len-f 230 for the forward reads and 
 
 This step removes noise from the sequencing data, corrects errors, and generates a table of feature abundances (ASVs), representative sequences, and denoising statistics.
 
+[Qiime 2 Docs](https://docs.qiime2.org/2024.5/plugins/available/dada2/denoise-paired/)
+
 ```bash
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza \
@@ -376,6 +378,8 @@ qiime dada2 denoise-paired \
 
 This step classifies the representative sequences into taxonomic groups using a pre-trained classifier.
 
+[Qiime 2 Docs](https://docs.qiime2.org/2024.5/plugins/available/feature-classifier/classify-sklearn/)
+
 ```bash
 qiime feature-classifier classify-sklearn \
   --i-classifier /mnt/vstor/SOM_PQHS_LXZ716/Reference/QIIME2_Pre-trained_Classifier/silva-138-99-nb-classifier.qza \
@@ -393,6 +397,8 @@ qiime feature-classifier classify-sklearn \
 
 This step creates a visualization of the taxonomic classification results, allowing you to review the taxonomy assignments.
 
+[Qiime 2 Docs](https://docs.qiime2.org/2024.5/tutorials/metadata/)
+
 ```bash
 qiime metadata tabulate \
   --m-input-file /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza \
@@ -407,6 +413,8 @@ qiime metadata tabulate \
 ### Feature Table Summary
 
 This step summarizes the feature table, providing an overview of feature counts per sample and other summary statistics.
+
+[Qiime 2 Dosc](https://docs.qiime2.org/2024.5/tutorials/read-joining/#view-summary-of-deblur-feature-table)
 
 ```bash
 qiime feature-table summarize \
@@ -427,6 +435,8 @@ qiime feature-table summarize \
 
 This step aligns the sequences, masks the alignment to remove highly variable positions, and constructs a phylogenetic tree for diversity analyses.
 
+[Qiime 2 Docs](https://docs.qiime2.org/2024.5/plugins/available/phylogeny/align-to-tree-mafft-fasttree/)
+
 ```bash
 qiime phylogeny align-to-tree-mafft-fasttree \
   --i-sequences /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza \
@@ -445,6 +455,8 @@ qiime phylogeny align-to-tree-mafft-fasttree \
 ### Taxa Bar Plot Visualization
 
 This step creates a bar plot to visualize the taxonomic composition of the samples, providing insights into the relative abundance of different taxa.
+
+[Qiime 2 Docs](https://docs.qiime2.org/2024.5/plugins/available/taxa/barplot/)
 
 ```bash
 qiime taxa barplot \

@@ -297,6 +297,7 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <div id="denoising-sequences-with-dada2" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Denoising Sequences with DADA2<a href="qiime-2.html#denoising-sequences-with-dada2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step removes noise from the sequencing data, corrects errors, and generates a table of feature abundances (ASVs), representative sequences, and denoising statistics.</p>
+<p><a href="https://docs.qiime2.org/2024.5/plugins/available/dada2/denoise-paired/">Qiime 2 Docs</a></p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="qiime-2.html#cb21-1" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="dt">\</span></span>
 <span id="cb21-2"><a href="qiime-2.html#cb21-2" tabindex="-1"></a>  <span class="at">--i-demultiplexed-seqs</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza <span class="dt">\</span></span>
 <span id="cb21-3"><a href="qiime-2.html#cb21-3" tabindex="-1"></a>  <span class="at">--p-trim-left-f</span> 0 <span class="dt">\</span></span>
@@ -318,6 +319,7 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <div id="taxonomic-classification" class="section level3 hasAnchor" number="6.3.4">
 <h3><span class="header-section-number">6.3.4</span> Taxonomic Classification<a href="qiime-2.html#taxonomic-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step classifies the representative sequences into taxonomic groups using a pre-trained classifier.</p>
+<p><a href="https://docs.qiime2.org/2024.5/plugins/available/feature-classifier/classify-sklearn/">Qiime 2 Docs</a></p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="qiime-2.html#cb22-1" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier classify-sklearn <span class="dt">\</span></span>
 <span id="cb22-2"><a href="qiime-2.html#cb22-2" tabindex="-1"></a>  <span class="at">--i-classifier</span> /mnt/vstor/SOM_PQHS_LXZ716/Reference/QIIME2_Pre-trained_Classifier/silva-138-99-nb-classifier.qza <span class="dt">\</span></span>
 <span id="cb22-3"><a href="qiime-2.html#cb22-3" tabindex="-1"></a>  <span class="at">--i-reads</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza <span class="dt">\</span></span>
@@ -331,6 +333,7 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <div id="metadata-visualization" class="section level3 hasAnchor" number="6.3.5">
 <h3><span class="header-section-number">6.3.5</span> Metadata Visualization<a href="qiime-2.html#metadata-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step creates a visualization of the taxonomic classification results, allowing you to review the taxonomy assignments.</p>
+<p><a href="https://docs.qiime2.org/2024.5/tutorials/metadata/">Qiime 2 Docs</a></p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="qiime-2.html#cb23-1" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate <span class="dt">\</span></span>
 <span id="cb23-2"><a href="qiime-2.html#cb23-2" tabindex="-1"></a>  <span class="at">--m-input-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza <span class="dt">\</span></span>
 <span id="cb23-3"><a href="qiime-2.html#cb23-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qzv</span></code></pre></div>
@@ -346,6 +349,7 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <div id="feature-table-summary" class="section level3 hasAnchor" number="6.3.6">
 <h3><span class="header-section-number">6.3.6</span> Feature Table Summary<a href="qiime-2.html#feature-table-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step summarizes the feature table, providing an overview of feature counts per sample and other summary statistics.</p>
+<p><a href="https://docs.qiime2.org/2024.5/tutorials/read-joining/#view-summary-of-deblur-feature-table">Qiime 2 Dosc</a></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="qiime-2.html#cb24-1" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
 <span id="cb24-2"><a href="qiime-2.html#cb24-2" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
 <span id="cb24-3"><a href="qiime-2.html#cb24-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qzv <span class="dt">\</span></span>
@@ -367,6 +371,7 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <div id="phylogenetic-tree-construction" class="section level3 hasAnchor" number="6.3.7">
 <h3><span class="header-section-number">6.3.7</span> Phylogenetic Tree Construction<a href="qiime-2.html#phylogenetic-tree-construction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step aligns the sequences, masks the alignment to remove highly variable positions, and constructs a phylogenetic tree for diversity analyses.</p>
+<p><a href="https://docs.qiime2.org/2024.5/plugins/available/phylogeny/align-to-tree-mafft-fasttree/">Qiime 2 Docs</a></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="qiime-2.html#cb25-1" tabindex="-1"></a><span class="ex">qiime</span> phylogeny align-to-tree-mafft-fasttree <span class="dt">\</span></span>
 <span id="cb25-2"><a href="qiime-2.html#cb25-2" tabindex="-1"></a>  <span class="at">--i-sequences</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza <span class="dt">\</span></span>
 <span id="cb25-3"><a href="qiime-2.html#cb25-3" tabindex="-1"></a>  <span class="at">--o-alignment</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/aligned-rep-seqs.qza <span class="dt">\</span></span>
@@ -384,6 +389,7 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <div id="taxa-bar-plot-visualization" class="section level3 hasAnchor" number="6.3.8">
 <h3><span class="header-section-number">6.3.8</span> Taxa Bar Plot Visualization<a href="qiime-2.html#taxa-bar-plot-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step creates a bar plot to visualize the taxonomic composition of the samples, providing insights into the relative abundance of different taxa.</p>
+<p><a href="https://docs.qiime2.org/2024.5/plugins/available/taxa/barplot/">Qiime 2 Docs</a></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="qiime-2.html#cb26-1" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot <span class="dt">\</span></span>
 <span id="cb26-2"><a href="qiime-2.html#cb26-2" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
 <span id="cb26-3"><a href="qiime-2.html#cb26-3" tabindex="-1"></a>  <span class="at">--i-taxonomy</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza <span class="dt">\</span></span>
