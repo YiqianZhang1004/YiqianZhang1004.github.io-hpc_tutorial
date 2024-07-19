@@ -23,3 +23,4 @@ metadata-visualization
 feature-table-summary
 phylogenetic-tree-construction
 taxa-bar-plot-visualization
+convert-bam-to-fastq

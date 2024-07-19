@@ -225,6 +225,13 @@ The executable programs will be installed in a `bin` subdirectory under your spe
 export PATH=/where/to/install/bin:$PATH
 ```
 
+## Convert BAM to FASTQ 
+
+```bash
+samtools bam2fq "$bam_file" > "$fastq_file"
+```
+This line runs Samtools to convert the BAM file to a FASTQ file.
+
 #  QIIME 2
 
 [QIIME 2 Website](https://qiime2.org/)

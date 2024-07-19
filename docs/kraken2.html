@@ -154,6 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="samtools.html"><a href="samtools.html#use-samtools"><i class="fa fa-check"></i><b>5.1</b> Use Samtools</a></li>
 <li class="chapter" data-level="5.2" data-path="samtools.html"><a href="samtools.html#install-samtools"><i class="fa fa-check"></i><b>5.2</b> Install Samtools</a></li>
+<li class="chapter" data-level="5.3" data-path="samtools.html"><a href="samtools.html#convert-bam-to-fastq"><i class="fa fa-check"></i><b>5.3</b> Convert BAM to FASTQ</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="qiime-2.html"><a href="qiime-2.html"><i class="fa fa-check"></i><b>6</b> QIIME 2</a>
 <ul>
@@ -203,10 +204,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="use-kraken2" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Use Kraken2<a href="kraken2.html#use-kraken2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Kraken2 is already installed. To copy Kraken2 binaries to your personal bin directory, run the following command:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="kraken2.html#cb27-1" tabindex="-1"></a><span class="fu">cp</span> /mnt/vstor/SOM_PQHS_LXZ716/software/Kraken2/kraken2<span class="dt">{</span><span class="op">,</span><span class="dt">-build</span><span class="op">,</span><span class="dt">-inspect}</span> <span class="va">$HOME</span>/bin</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="kraken2.html#cb28-1" tabindex="-1"></a><span class="fu">cp</span> /mnt/vstor/SOM_PQHS_LXZ716/software/Kraken2/kraken2<span class="dt">{</span><span class="op">,</span><span class="dt">-build</span><span class="op">,</span><span class="dt">-inspect}</span> <span class="va">$HOME</span>/bin</span></code></pre></div>
 <p>Check the Version:
 Run the following command to check if Kraken2 is installed and to see the version number:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="kraken2.html#cb28-1" tabindex="-1"></a><span class="ex">kraken2</span> <span class="at">--version</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="kraken2.html#cb29-1" tabindex="-1"></a><span class="ex">kraken2</span> <span class="at">--version</span></span></code></pre></div>
 </div>
 <div id="available-kraken2-databases" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Available Kraken2 Databases<a href="kraken2.html#available-kraken2-databases" class="anchor-section" aria-label="Anchor link to header"></a></h2>

@@ -154,6 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="samtools.html"><a href="samtools.html#use-samtools"><i class="fa fa-check"></i><b>5.1</b> Use Samtools</a></li>
 <li class="chapter" data-level="5.2" data-path="samtools.html"><a href="samtools.html#install-samtools"><i class="fa fa-check"></i><b>5.2</b> Install Samtools</a></li>
+<li class="chapter" data-level="5.3" data-path="samtools.html"><a href="samtools.html#convert-bam-to-fastq"><i class="fa fa-check"></i><b>5.3</b> Convert BAM to FASTQ</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="qiime-2.html"><a href="qiime-2.html"><i class="fa fa-check"></i><b>6</b> QIIME 2</a>
 <ul>
@@ -247,6 +248,11 @@ Install Samtools by running:</li>
 The executable programs will be installed in a <code>bin</code> subdirectory under your specified prefix. Add this directory to your <code>$PATH</code> to access the programs easily (replace <code>/where/to/install</code> with your specified installation directory):</li>
 </ol>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="samtools.html#cb14-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/where/to/install/bin:<span class="va">$PATH</span></span></code></pre></div>
+</div>
+<div id="convert-bam-to-fastq" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Convert BAM to FASTQ<a href="samtools.html#convert-bam-to-fastq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="samtools.html#cb15-1" tabindex="-1"></a><span class="ex">samtools</span> bam2fq <span class="st">&quot;</span><span class="va">$bam_file</span><span class="st">&quot;</span> <span class="op">&gt;</span> <span class="st">&quot;</span><span class="va">$fastq_file</span><span class="st">&quot;</span></span></code></pre></div>
+<p>This line runs Samtools to convert the BAM file to a FASTQ file.</p>
 </div>
 </div>
             </section>
