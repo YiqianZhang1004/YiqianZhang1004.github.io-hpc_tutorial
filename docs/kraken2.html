@@ -23,7 +23,7 @@
 <meta name="author" content="Yiqian Zhang" />
 
 
-<meta name="date" content="2024-07-18" />
+<meta name="date" content="2024-07-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,6 +159,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="qiime-2.html"><a href="qiime-2.html#use-qiime-2"><i class="fa fa-check"></i><b>6.1</b> Use QIIME 2</a></li>
 <li class="chapter" data-level="6.2" data-path="qiime-2.html"><a href="qiime-2.html#available-qiime-2-databases"><i class="fa fa-check"></i><b>6.2</b> Available Qiime 2 Databases</a></li>
+<li class="chapter" data-level="6.3" data-path="qiime-2.html"><a href="qiime-2.html#example-for-jax.iu.pitt-microbiome-pilot-study"><i class="fa fa-check"></i><b>6.3</b> Example for Jax.IU.Pitt Microbiome Pilot Study</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="qiime-2.html"><a href="qiime-2.html#importing-data"><i class="fa fa-check"></i><b>6.3.1</b> Importing Data</a></li>
+<li class="chapter" data-level="6.3.2" data-path="qiime-2.html"><a href="qiime-2.html#summarizing-demultiplexed-sequences"><i class="fa fa-check"></i><b>6.3.2</b> Summarizing Demultiplexed Sequences</a></li>
+<li class="chapter" data-level="6.3.3" data-path="qiime-2.html"><a href="qiime-2.html#denoising-sequences-with-dada2"><i class="fa fa-check"></i><b>6.3.3</b> Denoising Sequences with DADA2</a></li>
+<li class="chapter" data-level="6.3.4" data-path="qiime-2.html"><a href="qiime-2.html#taxonomic-classification"><i class="fa fa-check"></i><b>6.3.4</b> Taxonomic Classification</a></li>
+<li class="chapter" data-level="6.3.5" data-path="qiime-2.html"><a href="qiime-2.html#metadata-visualization"><i class="fa fa-check"></i><b>6.3.5</b> Metadata Visualization</a></li>
+<li class="chapter" data-level="6.3.6" data-path="qiime-2.html"><a href="qiime-2.html#feature-table-summary"><i class="fa fa-check"></i><b>6.3.6</b> Feature Table Summary</a></li>
+<li class="chapter" data-level="6.3.7" data-path="qiime-2.html"><a href="qiime-2.html#phylogenetic-tree-construction"><i class="fa fa-check"></i><b>6.3.7</b> Phylogenetic Tree Construction</a></li>
+<li class="chapter" data-level="6.3.8" data-path="qiime-2.html"><a href="qiime-2.html#taxa-bar-plot-visualization"><i class="fa fa-check"></i><b>6.3.8</b> Taxa Bar Plot Visualization</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="kraken2.html"><a href="kraken2.html"><i class="fa fa-check"></i><b>7</b> Kraken2</a>
 <ul>
@@ -192,10 +203,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="use-kraken2" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Use Kraken2<a href="kraken2.html#use-kraken2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Kraken2 is already installed. To copy Kraken2 binaries to your personal bin directory, run the following command:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="kraken2.html#cb18-1" tabindex="-1"></a><span class="fu">cp</span> /mnt/vstor/SOM_PQHS_LXZ716/software/Kraken2/kraken2<span class="dt">{</span><span class="op">,</span><span class="dt">-build</span><span class="op">,</span><span class="dt">-inspect}</span> <span class="va">$HOME</span>/bin</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="kraken2.html#cb27-1" tabindex="-1"></a><span class="fu">cp</span> /mnt/vstor/SOM_PQHS_LXZ716/software/Kraken2/kraken2<span class="dt">{</span><span class="op">,</span><span class="dt">-build</span><span class="op">,</span><span class="dt">-inspect}</span> <span class="va">$HOME</span>/bin</span></code></pre></div>
 <p>Check the Version:
 Run the following command to check if Kraken2 is installed and to see the version number:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="kraken2.html#cb19-1" tabindex="-1"></a><span class="ex">kraken2</span> <span class="at">--version</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="kraken2.html#cb28-1" tabindex="-1"></a><span class="ex">kraken2</span> <span class="at">--version</span></span></code></pre></div>
 </div>
 <div id="available-kraken2-databases" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Available Kraken2 Databases<a href="kraken2.html#available-kraken2-databases" class="anchor-section" aria-label="Anchor link to header"></a></h2>

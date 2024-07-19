@@ -14,3 +14,12 @@ available-qiime-2-databases
 kraken2
 use-kraken2
 available-kraken2-databases
+example-for-jax.iu.pitt-microbiome-pilot-study
+importing-data
+denoising-sequences-with-dada2
+summarizing-demultiplexed-sequences
+taxonomic-classification
+metadata-visualization
+feature-table-summary
+phylogenetic-tree-construction
+taxa-bar-plot-visualization

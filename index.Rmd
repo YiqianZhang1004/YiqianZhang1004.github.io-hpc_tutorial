@@ -233,6 +233,8 @@ export PATH=/where/to/install/bin:$PATH
 
 ## Use QIIME 2
 
+
+
 Qiime 2 is already installed in the Lab Group Conda environment. To use it, follow these steps:
 
 1. Activate Conda:
@@ -255,6 +257,8 @@ Run the following command to check if Qiime 2 is installed and to see the versio
 qiime --version
 ```
 
+
+
 ## Available Qiime 2 Databases
 
 A pre-trained classifier database for Qiime 2 is available in the Group Directory. This database can be found under the following directory:
@@ -264,6 +268,185 @@ A pre-trained classifier database for Qiime 2 is available in the Group Director
 The available database includes:
 
 - `QIIME2_Pre-trained_Classifier`: A pre-trained classifier for taxonomic classification of microbial sequences, optimized for use with Qiime 2.
+
+## Example for [Jax.IU.Pitt Microbiome Pilot Study](https://ondemand-pioneer.case.edu/pun/sys/dashboard/files/fs//mnt/vstor/SOM_PQHS_LXZ716/MicroB2)
+
+### Importing Data
+
+**Fastq Manifest Formats**
+
+When importing data, we use the "Fastq manifest" format. This method is suitable for data that do not fit the common multiplexed or demultiplexed formats (e.g., EMP or Casava). To import your data manually, you will need to create a manifest file and use the `qiime tools import` command.
+
+**Format Description**
+
+First, you’ll create a text file called a “manifest file”, which maps sample identifiers to fastq.gz or fastq absolute filepaths that contain sequence and quality data for the sample (i.e., these are FASTQ files). The manifest file also indicates the direction of the reads in each fastq.gz or fastq file. The manifest file is designed to be a simple format that doesn’t put restrictions on the naming of the demultiplexed fastq.gz / fastq files.
+
+The manifest file is a tab-separated (i.e., .tsv) text file. The first column defines the Sample ID, while the second (and optional third) column defines the absolute filepath to the forward (and optional reverse) reads. The fastq.gz absolute filepaths may contain environment variables (e.g., $HOME or $PWD).
+
+**Example Manifest File for Paired-End Reads**
+
+Here is an example of a manifest file for paired-end read data:
+
+```bash
+sample-id    forward-absolute-filepath                    reverse-absolute-filepath
+288593663    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288593663_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288593663_R2.fastq.gz
+288601191    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288601191_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288601191_R2.fastq.gz
+288605432    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288605432_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288605432_R2.fastq.gz
+288613647    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288613647_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288613647_R2.fastq.gz
+288625970    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288625970_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288625970_R2.fastq.gz
+288638583    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288638583_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288638583_R2.fastq.gz
+288638603    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288638603_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288638603_R2.fastq.gz
+288658590    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288658590_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288658590_R2.fastq.gz
+288662694    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288662694_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288662694_R2.fastq.gz
+288696281    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288696281_R1.fastq.gz    /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/288696281_R2.fastq.gz
+```
+
+**Importing the Data**
+Use the following command to import the data into QIIME 2:
+```bash
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/manifest.tsv \
+  --output-path /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza \
+  --input-format PairedEndFastqManifestPhred33V2
+```
+
+For more information on importing data and using different formats, refer to the [QIIME 2 Importing Tutorial](https://docs.qiime2.org/2024.5/tutorials/importing/).
+
+### Summarizing Demultiplexed Sequences
+
+Before denoising, it is important to visualize the quality of the sequencing data. This step summarizes the demultiplexed sequences and generates a visualization to help determine the optimal truncation lengths for denoising.
+```bash
+qiime demux summarize \
+  --i-data /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza \
+  --o-visualization /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/demux-summary.qzv
+```
+- `--i-data`: Input file with demultiplexed sequences.
+- `--o-visualization`: Output file for the summary visualization.
+
+The output visualization (`demux-summary.qzv`) provides interactive plots of the quality scores across all sequences. This information is crucial for determining the appropriate truncation lengths (`--p-trunc-len-f` and `--p-trunc-len-r`) to use in the denoising step.
+
+**How to Choose Truncation Lengths:**
+
+1. Open the Visualization:
+
+Open the demux-summary.qzv file in QIIME 2 View QIIME 2 View.
+
+2. Inspect the Quality Plots:
+
+Look at the interactive quality plots for the forward and reverse reads. Each plot shows the distribution of quality scores across all positions in your reads.
+
+3. Identify Quality Drop-off Points:
+
+Identify the position in the reads where the quality scores start to drop significantly. This is usually seen as a downward trend in the quality scores towards the end of the reads.
+For example, if the quality scores drop below a threshold (e.g., Q30) around position 230 for the forward reads and position 170 for the reverse reads, these positions might be suitable truncation points.
+
+3. Choose Conservative Truncation Lengths:
+
+To ensure high-quality data, choose truncation lengths that are slightly before the quality scores drop significantly. This helps to retain more high-quality bases.
+In this example, you might choose --p-trunc-len-f 230 for the forward reads and --p-trunc-len-r 170 for the reverse reads.
+
+### Denoising Sequences with DADA2
+
+This step removes noise from the sequencing data, corrects errors, and generates a table of feature abundances (ASVs), representative sequences, and denoising statistics.
+
+```bash
+qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza \
+  --p-trim-left-f 0 \
+  --p-trim-left-r 0 \
+  --p-trunc-len-f 230 \
+  --p-trunc-len-r 170 \
+  --o-table /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza \
+  --o-representative-sequences /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza \
+  --o-denoising-stats /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/denoising-stats.qza
+```
+
+- `--i-demultiplexed-seqs`: Input file with demultiplexed sequences.
+- `--p-trim-left-f` and `--p-trim-left-r`: Number of bases to trim from the start of each read.
+- `--p-trunc-len-f` and `--p-trunc-len-r`: Position at which reads are truncated due to decrease in quality.
+- `--o-table`: Output file for the feature table (ASVs).
+- `--o-representative-sequences`: Output file for the representative sequences.
+- `--o-denoising-stats`: Output file for denoising statistics.
+
+### Taxonomic Classification
+
+This step classifies the representative sequences into taxonomic groups using a pre-trained classifier.
+
+```bash
+qiime feature-classifier classify-sklearn \
+  --i-classifier /mnt/vstor/SOM_PQHS_LXZ716/Reference/QIIME2_Pre-trained_Classifier/silva-138-99-nb-classifier.qza \
+  --i-reads /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza \
+  --o-classification /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza
+```
+
+- `--i-classifier`: Pre-trained classifier file.
+- `--i-reads`: Input file with representative sequences.
+- `--o-classification`: Output file with taxonomic classification results.
+
+### Metadata Visualization
+
+This step creates a visualization of the taxonomic classification results, allowing you to review the taxonomy assignments.
+
+```bash
+qiime metadata tabulate \
+  --m-input-file /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza \
+  --o-visualization /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qzv
+```
+
+- `--m-input-file`: Input file with metadata to be visualized.
+- `--o-visualization`: Output file for the visualization.
+
+### Feature Table Summary
+
+This step summarizes the feature table, providing an overview of feature counts per sample and other summary statistics.
+
+```bash
+qiime feature-table summarize \
+  --i-table /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza \
+  --o-visualization /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qzv \
+  --m-sample-metadata-file /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv
+```
+
+- `--i-table`: Input feature table file.
+- `--o-visualization`: Output file for the summary visualization.
+- `--m-sample-metadata-file`: Metadata file associated with the samples.
+
+### Phylogenetic Tree Construction
+
+This step aligns the sequences, masks the alignment to remove highly variable positions, and constructs a phylogenetic tree for diversity analyses.
+
+```bash
+qiime phylogeny align-to-tree-mafft-fasttree \
+  --i-sequences /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza \
+  --o-alignment /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/aligned-rep-seqs.qza \
+  --o-masked-alignment /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/masked-aligned-rep-seqs.qza \
+  --o-tree /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unrooted-tree.qza \
+  --o-rooted-tree /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rooted-tree.qza
+```
+
+- `--i-sequences`: Input file with representative sequences.
+- `--o-alignment`: Output file for aligned sequences.
+- `--o-masked-alignment`: Output file for masked alignment.
+- `--o-tree`: Output file for unrooted phylogenetic tree.
+- `--o-rooted-tree`: Output file for rooted phylogenetic tree.
+
+### Taxa Bar Plot Visualization
+
+This step creates a bar plot to visualize the taxonomic composition of the samples, providing insights into the relative abundance of different taxa.
+
+```bash
+qiime taxa barplot \
+  --i-table /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza \
+  --i-taxonomy /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza \
+  --m-metadata-file /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv \
+  --o-visualization /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxa-bar-plots.qzv
+```
+
+- `--i-table`: Input feature table file.
+- `--i-taxonomy`: Input file with taxonomic classification.
+- `--m-metadata-file`: Metadata file associated with the samples.
+- `--o-visualization`: Output file for the bar plot visualization.
 
 # Kraken2
 
