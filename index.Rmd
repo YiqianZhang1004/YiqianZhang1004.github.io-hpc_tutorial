@@ -322,13 +322,47 @@ qiime tools import \
 
 For more information on importing data and using different formats, refer to the [QIIME 2 Importing Tutorial](https://docs.qiime2.org/2024.5/tutorials/importing/).
 
+
+### Trimming Adapters from Sequences
+
+After importing the data, it is important to remove any adapter sequences that may be present. The trimmed sequences can often be found in the STUDY DESCRIPTION. For example, in our study, the STUDY DESCRIPTION mentions:
+
+`The primers used incorporated Illumina dual indices and sequencing adapters with the following 16S rRNA gene V1-V3 priming regions: 27F (5’ AGAGTTTGATCCTGGCTCAG) and 534R (5’ ATTACCGCGGCTGCTGG).`
+
+Use the following command to trim adapters from the paired-end sequences:
+
+[Qiime 2 Dosc](https://docs.qiime2.org/2024.5/plugins/available/cutadapt/trim-paired/)
+
+```bash
+qiime cutadapt trim-paired \
+  --i-demultiplexed-sequences /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza \
+  --p-cores 16 \
+  --p-front-f AGAGTTTGATCCTGGCTCAG \
+  --p-front-r ATTACCGCGGCTGCTGG \
+  --p-discard-untrimmed \
+  --o-trimmed-sequences /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/trim-seqs.qza \
+  --verbose
+```
+
+- `--i-demultiplexed-sequences`: Input file with demultiplexed sequences.
+- `--p-cores`: Number of CPU cores to use for processing.
+- `--p-front-f`: Forward adapter sequence to trim.
+- `--p-front-r`: Reverse adapter sequence to trim.
+- `--p-discard-untrimmed`: Discard reads that do not contain the adapter sequences.
+- `--o-trimmed-sequences`: Output file for the trimmed sequences.
+- `--verbose`: Provides detailed output during the trimming process.
+
+After trimming the adapters, proceed to the summarizing demultiplexed sequences step to visualize the quality of the trimmed data.
+
+
+
 ### Summarizing Demultiplexed Sequences
 
 Before denoising, it is important to visualize the quality of the sequencing data. This step summarizes the demultiplexed sequences and generates a visualization to help determine the optimal truncation lengths for denoising.
 ```bash
 qiime demux summarize \
-  --i-data /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza \
-  --o-visualization /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/demux-summary.qzv
+  --i-data /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/trim-seqs.qza \
+  --o-visualization /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/trim-seqs.qzv
 ```
 - `--i-data`: Input file with demultiplexed sequences.
 - `--o-visualization`: Output file for the summary visualization.
@@ -350,12 +384,12 @@ Look at the interactive quality plots for the forward and reverse reads. Each pl
 3. Identify Quality Drop-off Points:
 
 Identify the position in the reads where the quality scores start to drop significantly. This is usually seen as a downward trend in the quality scores towards the end of the reads.
-For example, if the quality scores drop below a threshold (e.g., Q30) around position 230 for the forward reads and position 170 for the reverse reads, these positions might be suitable truncation points.
+For example, if the quality scores drop below a threshold (e.g., Q25) around position 270 for the forward reads and position 260 for the reverse reads, these positions might be suitable truncation points.
 
 3. Choose Conservative Truncation Lengths:
 
 To ensure high-quality data, choose truncation lengths that are slightly before the quality scores drop significantly. This helps to retain more high-quality bases.
-In this example, you might choose --p-trunc-len-f 230 for the forward reads and --p-trunc-len-r 170 for the reverse reads.
+In this example, you might choose --p-trunc-len-f 270 for the forward reads and --p-trunc-len-r 260 for the reverse reads.
 
 ### Denoising Sequences with DADA2
 
@@ -365,11 +399,11 @@ This step removes noise from the sequencing data, corrects errors, and generates
 
 ```bash
 qiime dada2 denoise-paired \
-  --i-demultiplexed-seqs /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza \
+  --i-demultiplexed-seqs /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/trim-seqs.qza \
   --p-trim-left-f 0 \
   --p-trim-left-r 0 \
-  --p-trunc-len-f 230 \
-  --p-trunc-len-r 170 \
+  --p-trunc-len-f 270 \
+  --p-trunc-len-r 260 \
   --o-table /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza \
   --o-representative-sequences /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza \
   --o-denoising-stats /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/denoising-stats.qza
@@ -480,6 +514,108 @@ qiime taxa barplot \
 - `--o-visualization`: Output file for the bar plot visualization.
 
 ![taxa-bar-plots.qzv](taxa-bar-plots.png)
+
+### Alpha Rarefaction Analysis
+
+Alpha rarefaction analysis helps to understand the diversity within a sample. This step generates a rarefaction curve, which is useful for assessing the sampling depth required to capture the diversity within each sample.
+
+```bash
+qiime diversity alpha-rarefaction \
+  --i-table /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza \
+  --i-phylogeny /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rooted-tree.qza \
+  --p-max-depth 30000 \
+  --m-metadata-file /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv \
+  --o-visualization /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/alpha-rarefaction.qzv
+```
+
+- `--i-table`: Input feature table file.
+- `--i-phylogeny`: Input phylogenetic tree file.
+- `--p-max-depth`: Maximum rarefaction depth.
+- `--m-metadata-file`: Metadata file associated with the samples.
+- `--o-visualization`: Output file for the rarefaction visualization.
+
+**Choosing `--p-max-depth`:**
+
+The `--p-max-depth` parameter specifies the maximum sequencing depth for rarefaction. To choose an appropriate value, follow these steps:
+
+1. Visualize Sequence Depth Distribution:
+
+- Before setting `--p-max-depth`, examine the sequencing depth distribution using the `table.qzv` file. This file can be generated with the following command:
+```bash
+qiime feature-table summarize \
+  --i-table /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza \
+  --o-visualization /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qzv \
+  --m-sample-metadata-file /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv
+```
+- Open the resulting `table.qzv` file in [QIIME 2 View](https://view.qiime2.org/) to explore the sequencing depth distribution.
+
+2. Determine an Appropriate Depth:
+
+- Look at the `"Interactive Sample Detail"` and `"Frequency per sample"` plot in the `table.qzv` visualization. Select a -`-p-max-depth` value that includes the majority of your samples. This helps ensure that a sufficient number of samples are included in the analysis.
+- Avoid setting the depth too high, as this may exclude many samples with lower sequencing depth. Conversely, setting it too low may not fully capture the diversity within each sample.
+
+3. Example:
+
+- If the frequency plot shows that most samples have around 20,000 sequences, you might choose a --p-max-depth of 20,000 or slightly lower (e.g., 15,000) to include as many samples as possible while still capturing the diversity.
+
+The resulting visualization (`alpha-rarefaction.qzv`) allows you to explore the alpha diversity metrics at different sampling depths and helps to determine the adequate sequencing depth for your samples.
+
+![alpha-rarefaction.qzv](alpha-rarefaction.png)
+
+### Core Metrics Phylogenetic Analysis
+
+Core metrics phylogenetic analysis computes a range of diversity metrics, including both alpha and beta diversity metrics. The `--p-sampling-depth` parameter should be chosen based on the results of the alpha rarefaction analysis.
+
+```bash
+qiime diversity core-metrics-phylogenetic \
+  --i-phylogeny /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rooted-tree.qza \
+  --i-table /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza \
+  --p-sampling-depth 4000 \
+  --m-metadata-file /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv \
+  --o-rarefied-table /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rarefied-table.qza \
+  --o-observed-features-vector /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/observed-features.qza \
+  --o-shannon-vector /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/shannon.qza \
+  --o-evenness-vector /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/evenness.qza \
+  --o-faith-pd-vector /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/faith-pd.qza \
+  --o-unweighted-unifrac-distance-matrix /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unweighted-unifrac-distance-matrix.qza \
+  --o-weighted-unifrac-distance-matrix /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/weighted-unifrac-distance-matrix.qza \
+  --o-jaccard-distance-matrix /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/jaccard-distance-matrix.qza \
+  --o-bray-curtis-distance-matrix /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/bray-curtis-distance-matrix.qza \
+  --o-unweighted-unifrac-pcoa-results /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unweighted-unifrac-pcoa-results.qza \
+  --o-weighted-unifrac-pcoa-results /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/weighted-unifrac-pcoa-results.qza \
+  --o-jaccard-pcoa-results /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/jaccard-pcoa-results.qza \
+  --o-bray-curtis-pcoa-results /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/bray-curtis-pcoa-results.qza \
+  --o-unweighted-unifrac-emperor /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unweighted-unifrac-emperor.qzv \
+  --o-weighted-unifrac-emperor /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/weighted-unifrac-emperor.qzv \
+  --o-jaccard-emperor /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/jaccard-emperor.qzv \
+  --o-bray-curtis-emperor /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/bray-curtis-emperor.qzv
+```
+
+- `--i-phylogeny`: Input phylogenetic tree file.
+- `--i-table`: Input feature table file.
+- `--p-sampling-depth`: Depth at which to subsample the feature table for diversity metrics.
+- `--m-metadata-file`: Metadata file associated with the samples.
+- `--o-rarefied-table`: Output rarefied feature table, used for subsequent diversity analyses.
+- `--o-observed-features-vector`: Output vector of observed features, representing the number of unique features (e.g., species) observed in each sample.
+- `--o-shannon-vector`: Output vector of Shannon diversity index, a measure of the richness and evenness of species in a community.
+- `--o-evenness-vector`: Output vector of Pielou's evenness, indicating how evenly the individuals are distributed across the different species present.
+- `--o-faith-pd-vector`: Output vector of Faith's Phylogenetic Diversity, a measure of diversity that considers the phylogenetic relationships between species.
+- `--o-unweighted-unifrac-distance-matrix`: Output unweighted UniFrac distance matrix, a measure of beta diversity that considers the presence/absence of species and their phylogenetic relationships.
+- `--o-weighted-unifrac-distance-matrix`: Output weighted UniFrac distance matrix, similar to unweighted UniFrac but also considering the relative abundance of species.
+- `--o-jaccard-distance-matrix`: Output Jaccard distance matrix, a measure of beta diversity based on the presence/absence of species.
+- `--o-bray-curtis-distance-matrix`: Output Bray-Curtis distance matrix, a measure of beta diversity that considers the relative abundance of species.
+- `--o-unweighted-unifrac-pcoa-results`: Output PCoA results for unweighted UniFrac, used for visualizing the beta diversity.
+- `--o-weighted-unifrac-pcoa-results`: Output PCoA results for weighted UniFrac, used for visualizing the beta diversity.
+- `--o-jaccard-pcoa-results`: Output PCoA results for Jaccard distance, used for visualizing the beta diversity.
+- `--o-bray-curtis-pcoa-results`: Output PCoA results for Bray-Curtis distance, used for visualizing the beta diversity.
+- `--o-unweighted-unifrac-emperor`: Output Emperor visualization for unweighted UniFrac, an interactive visualization tool.
+- `--o-weighted-unifrac-emperor`: Output Emperor visualization for weighted UniFrac, an interactive visualization tool.
+- `--o-jaccard-emperor`: Output Emperor visualization for Jaccard distance, an interactive visualization tool.
+- `--o-bray-curtis-emperor`: Output Emperor visualization for Bray-Curtis distance, an interactive visualization tool.
+
+**Choosing --p-sampling-depth:**
+
+The `--p-sampling-depth` parameter should be chosen based on the results of the alpha rarefaction analysis. In the alpha rarefaction visualization `(alpha-rarefaction.qzv)`, look at the sequencing depth at which the observed features plateau for most samples. This depth ensures that the diversity metrics are calculated with an adequate number of sequences without excluding too many samples. For example, if the observed features plateau around 4,000 sequences, you might set `--p-sampling-depth` to 4,000.
 
 # Kraken2
 

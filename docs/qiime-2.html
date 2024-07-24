@@ -23,7 +23,7 @@
 <meta name="author" content="Yiqian Zhang" />
 
 
-<meta name="date" content="2024-07-19" />
+<meta name="date" content="2024-07-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -163,13 +163,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="qiime-2.html"><a href="qiime-2.html#example-for-jax.iu.pitt-microbiome-pilot-study"><i class="fa fa-check"></i><b>6.3</b> Example for Jax.IU.Pitt Microbiome Pilot Study</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="qiime-2.html"><a href="qiime-2.html#importing-data"><i class="fa fa-check"></i><b>6.3.1</b> Importing Data</a></li>
-<li class="chapter" data-level="6.3.2" data-path="qiime-2.html"><a href="qiime-2.html#summarizing-demultiplexed-sequences"><i class="fa fa-check"></i><b>6.3.2</b> Summarizing Demultiplexed Sequences</a></li>
-<li class="chapter" data-level="6.3.3" data-path="qiime-2.html"><a href="qiime-2.html#denoising-sequences-with-dada2"><i class="fa fa-check"></i><b>6.3.3</b> Denoising Sequences with DADA2</a></li>
-<li class="chapter" data-level="6.3.4" data-path="qiime-2.html"><a href="qiime-2.html#taxonomic-classification"><i class="fa fa-check"></i><b>6.3.4</b> Taxonomic Classification</a></li>
-<li class="chapter" data-level="6.3.5" data-path="qiime-2.html"><a href="qiime-2.html#metadata-visualization"><i class="fa fa-check"></i><b>6.3.5</b> Metadata Visualization</a></li>
-<li class="chapter" data-level="6.3.6" data-path="qiime-2.html"><a href="qiime-2.html#feature-table-summary"><i class="fa fa-check"></i><b>6.3.6</b> Feature Table Summary</a></li>
-<li class="chapter" data-level="6.3.7" data-path="qiime-2.html"><a href="qiime-2.html#phylogenetic-tree-construction"><i class="fa fa-check"></i><b>6.3.7</b> Phylogenetic Tree Construction</a></li>
-<li class="chapter" data-level="6.3.8" data-path="qiime-2.html"><a href="qiime-2.html#taxa-bar-plot-visualization"><i class="fa fa-check"></i><b>6.3.8</b> Taxa Bar Plot Visualization</a></li>
+<li class="chapter" data-level="6.3.2" data-path="qiime-2.html"><a href="qiime-2.html#trimming-adapters-from-sequences"><i class="fa fa-check"></i><b>6.3.2</b> Trimming Adapters from Sequences</a></li>
+<li class="chapter" data-level="6.3.3" data-path="qiime-2.html"><a href="qiime-2.html#summarizing-demultiplexed-sequences"><i class="fa fa-check"></i><b>6.3.3</b> Summarizing Demultiplexed Sequences</a></li>
+<li class="chapter" data-level="6.3.4" data-path="qiime-2.html"><a href="qiime-2.html#denoising-sequences-with-dada2"><i class="fa fa-check"></i><b>6.3.4</b> Denoising Sequences with DADA2</a></li>
+<li class="chapter" data-level="6.3.5" data-path="qiime-2.html"><a href="qiime-2.html#taxonomic-classification"><i class="fa fa-check"></i><b>6.3.5</b> Taxonomic Classification</a></li>
+<li class="chapter" data-level="6.3.6" data-path="qiime-2.html"><a href="qiime-2.html#metadata-visualization"><i class="fa fa-check"></i><b>6.3.6</b> Metadata Visualization</a></li>
+<li class="chapter" data-level="6.3.7" data-path="qiime-2.html"><a href="qiime-2.html#feature-table-summary"><i class="fa fa-check"></i><b>6.3.7</b> Feature Table Summary</a></li>
+<li class="chapter" data-level="6.3.8" data-path="qiime-2.html"><a href="qiime-2.html#phylogenetic-tree-construction"><i class="fa fa-check"></i><b>6.3.8</b> Phylogenetic Tree Construction</a></li>
+<li class="chapter" data-level="6.3.9" data-path="qiime-2.html"><a href="qiime-2.html#taxa-bar-plot-visualization"><i class="fa fa-check"></i><b>6.3.9</b> Taxa Bar Plot Visualization</a></li>
+<li class="chapter" data-level="6.3.10" data-path="qiime-2.html"><a href="qiime-2.html#alpha-rarefaction-analysis"><i class="fa fa-check"></i><b>6.3.10</b> Alpha Rarefaction Analysis</a></li>
+<li class="chapter" data-level="6.3.11" data-path="qiime-2.html"><a href="qiime-2.html#core-metrics-phylogenetic-analysis"><i class="fa fa-check"></i><b>6.3.11</b> Core Metrics Phylogenetic Analysis</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="kraken2.html"><a href="kraken2.html"><i class="fa fa-check"></i><b>7</b> Kraken2</a>
@@ -260,12 +263,37 @@ Run the following command to check if Qiime 2 is installed and to see the versio
 <span id="cb20-5"><a href="qiime-2.html#cb20-5" tabindex="-1"></a>  <span class="at">--input-format</span> PairedEndFastqManifestPhred33V2</span></code></pre></div>
 <p>For more information on importing data and using different formats, refer to the <a href="https://docs.qiime2.org/2024.5/tutorials/importing/">QIIME 2 Importing Tutorial</a>.</p>
 </div>
-<div id="summarizing-demultiplexed-sequences" class="section level3 hasAnchor" number="6.3.2">
-<h3><span class="header-section-number">6.3.2</span> Summarizing Demultiplexed Sequences<a href="qiime-2.html#summarizing-demultiplexed-sequences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="trimming-adapters-from-sequences" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Trimming Adapters from Sequences<a href="qiime-2.html#trimming-adapters-from-sequences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>After importing the data, it is important to remove any adapter sequences that may be present. The trimmed sequences can often be found in the STUDY DESCRIPTION. For example, in our study, the STUDY DESCRIPTION mentions:</p>
+<p><code>The primers used incorporated Illumina dual indices and sequencing adapters with the following 16S rRNA gene V1-V3 priming regions: 27F (5’ AGAGTTTGATCCTGGCTCAG) and 534R (5’ ATTACCGCGGCTGCTGG).</code></p>
+<p>Use the following command to trim adapters from the paired-end sequences:</p>
+<p><a href="https://docs.qiime2.org/2024.5/plugins/available/cutadapt/trim-paired/">Qiime 2 Dosc</a></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="qiime-2.html#cb21-1" tabindex="-1"></a><span class="ex">qiime</span> cutadapt trim-paired <span class="dt">\</span></span>
+<span id="cb21-2"><a href="qiime-2.html#cb21-2" tabindex="-1"></a>  <span class="at">--i-demultiplexed-sequences</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza <span class="dt">\</span></span>
+<span id="cb21-3"><a href="qiime-2.html#cb21-3" tabindex="-1"></a>  <span class="at">--p-cores</span> 16 <span class="dt">\</span></span>
+<span id="cb21-4"><a href="qiime-2.html#cb21-4" tabindex="-1"></a>  <span class="at">--p-front-f</span> AGAGTTTGATCCTGGCTCAG <span class="dt">\</span></span>
+<span id="cb21-5"><a href="qiime-2.html#cb21-5" tabindex="-1"></a>  <span class="at">--p-front-r</span> ATTACCGCGGCTGCTGG <span class="dt">\</span></span>
+<span id="cb21-6"><a href="qiime-2.html#cb21-6" tabindex="-1"></a>  <span class="at">--p-discard-untrimmed</span> <span class="dt">\</span></span>
+<span id="cb21-7"><a href="qiime-2.html#cb21-7" tabindex="-1"></a>  <span class="at">--o-trimmed-sequences</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/trim-seqs.qza <span class="dt">\</span></span>
+<span id="cb21-8"><a href="qiime-2.html#cb21-8" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
+<ul>
+<li><code>--i-demultiplexed-sequences</code>: Input file with demultiplexed sequences.</li>
+<li><code>--p-cores</code>: Number of CPU cores to use for processing.</li>
+<li><code>--p-front-f</code>: Forward adapter sequence to trim.</li>
+<li><code>--p-front-r</code>: Reverse adapter sequence to trim.</li>
+<li><code>--p-discard-untrimmed</code>: Discard reads that do not contain the adapter sequences.</li>
+<li><code>--o-trimmed-sequences</code>: Output file for the trimmed sequences.</li>
+<li><code>--verbose</code>: Provides detailed output during the trimming process.</li>
+</ul>
+<p>After trimming the adapters, proceed to the summarizing demultiplexed sequences step to visualize the quality of the trimmed data.</p>
+</div>
+<div id="summarizing-demultiplexed-sequences" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Summarizing Demultiplexed Sequences<a href="qiime-2.html#summarizing-demultiplexed-sequences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before denoising, it is important to visualize the quality of the sequencing data. This step summarizes the demultiplexed sequences and generates a visualization to help determine the optimal truncation lengths for denoising.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="qiime-2.html#cb21-1" tabindex="-1"></a><span class="ex">qiime</span> demux summarize <span class="dt">\</span></span>
-<span id="cb21-2"><a href="qiime-2.html#cb21-2" tabindex="-1"></a>  <span class="at">--i-data</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza <span class="dt">\</span></span>
-<span id="cb21-3"><a href="qiime-2.html#cb21-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/demux-summary.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="qiime-2.html#cb22-1" tabindex="-1"></a><span class="ex">qiime</span> demux summarize <span class="dt">\</span></span>
+<span id="cb22-2"><a href="qiime-2.html#cb22-2" tabindex="-1"></a>  <span class="at">--i-data</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/trim-seqs.qza <span class="dt">\</span></span>
+<span id="cb22-3"><a href="qiime-2.html#cb22-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/trim-seqs.qzv</span></code></pre></div>
 <ul>
 <li><code>--i-data</code>: Input file with demultiplexed sequences.</li>
 <li><code>--o-visualization</code>: Output file for the summary visualization.</li>
@@ -288,26 +316,26 @@ Run the following command to check if Qiime 2 is installed and to see the versio
 <li>Identify Quality Drop-off Points:</li>
 </ol>
 <p>Identify the position in the reads where the quality scores start to drop significantly. This is usually seen as a downward trend in the quality scores towards the end of the reads.
-For example, if the quality scores drop below a threshold (e.g., Q30) around position 230 for the forward reads and position 170 for the reverse reads, these positions might be suitable truncation points.</p>
+For example, if the quality scores drop below a threshold (e.g., Q25) around position 270 for the forward reads and position 260 for the reverse reads, these positions might be suitable truncation points.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Choose Conservative Truncation Lengths:</li>
 </ol>
 <p>To ensure high-quality data, choose truncation lengths that are slightly before the quality scores drop significantly. This helps to retain more high-quality bases.
-In this example, you might choose –p-trunc-len-f 230 for the forward reads and –p-trunc-len-r 170 for the reverse reads.</p>
+In this example, you might choose –p-trunc-len-f 270 for the forward reads and –p-trunc-len-r 260 for the reverse reads.</p>
 </div>
-<div id="denoising-sequences-with-dada2" class="section level3 hasAnchor" number="6.3.3">
-<h3><span class="header-section-number">6.3.3</span> Denoising Sequences with DADA2<a href="qiime-2.html#denoising-sequences-with-dada2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="denoising-sequences-with-dada2" class="section level3 hasAnchor" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> Denoising Sequences with DADA2<a href="qiime-2.html#denoising-sequences-with-dada2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step removes noise from the sequencing data, corrects errors, and generates a table of feature abundances (ASVs), representative sequences, and denoising statistics.</p>
 <p><a href="https://docs.qiime2.org/2024.5/plugins/available/dada2/denoise-paired/">Qiime 2 Docs</a></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="qiime-2.html#cb22-1" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="dt">\</span></span>
-<span id="cb22-2"><a href="qiime-2.html#cb22-2" tabindex="-1"></a>  <span class="at">--i-demultiplexed-seqs</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/paired-end-demux.qza <span class="dt">\</span></span>
-<span id="cb22-3"><a href="qiime-2.html#cb22-3" tabindex="-1"></a>  <span class="at">--p-trim-left-f</span> 0 <span class="dt">\</span></span>
-<span id="cb22-4"><a href="qiime-2.html#cb22-4" tabindex="-1"></a>  <span class="at">--p-trim-left-r</span> 0 <span class="dt">\</span></span>
-<span id="cb22-5"><a href="qiime-2.html#cb22-5" tabindex="-1"></a>  <span class="at">--p-trunc-len-f</span> 230 <span class="dt">\</span></span>
-<span id="cb22-6"><a href="qiime-2.html#cb22-6" tabindex="-1"></a>  <span class="at">--p-trunc-len-r</span> 170 <span class="dt">\</span></span>
-<span id="cb22-7"><a href="qiime-2.html#cb22-7" tabindex="-1"></a>  <span class="at">--o-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
-<span id="cb22-8"><a href="qiime-2.html#cb22-8" tabindex="-1"></a>  <span class="at">--o-representative-sequences</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza <span class="dt">\</span></span>
-<span id="cb22-9"><a href="qiime-2.html#cb22-9" tabindex="-1"></a>  <span class="at">--o-denoising-stats</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/denoising-stats.qza</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="qiime-2.html#cb23-1" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="dt">\</span></span>
+<span id="cb23-2"><a href="qiime-2.html#cb23-2" tabindex="-1"></a>  <span class="at">--i-demultiplexed-seqs</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/trim-seqs.qza <span class="dt">\</span></span>
+<span id="cb23-3"><a href="qiime-2.html#cb23-3" tabindex="-1"></a>  <span class="at">--p-trim-left-f</span> 0 <span class="dt">\</span></span>
+<span id="cb23-4"><a href="qiime-2.html#cb23-4" tabindex="-1"></a>  <span class="at">--p-trim-left-r</span> 0 <span class="dt">\</span></span>
+<span id="cb23-5"><a href="qiime-2.html#cb23-5" tabindex="-1"></a>  <span class="at">--p-trunc-len-f</span> 270 <span class="dt">\</span></span>
+<span id="cb23-6"><a href="qiime-2.html#cb23-6" tabindex="-1"></a>  <span class="at">--p-trunc-len-r</span> 260 <span class="dt">\</span></span>
+<span id="cb23-7"><a href="qiime-2.html#cb23-7" tabindex="-1"></a>  <span class="at">--o-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
+<span id="cb23-8"><a href="qiime-2.html#cb23-8" tabindex="-1"></a>  <span class="at">--o-representative-sequences</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb23-9"><a href="qiime-2.html#cb23-9" tabindex="-1"></a>  <span class="at">--o-denoising-stats</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/denoising-stats.qza</span></code></pre></div>
 <ul>
 <li><code>--i-demultiplexed-seqs</code>: Input file with demultiplexed sequences.</li>
 <li><code>--p-trim-left-f</code> and <code>--p-trim-left-r</code>: Number of bases to trim from the start of each read.</li>
@@ -317,27 +345,27 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <li><code>--o-denoising-stats</code>: Output file for denoising statistics.</li>
 </ul>
 </div>
-<div id="taxonomic-classification" class="section level3 hasAnchor" number="6.3.4">
-<h3><span class="header-section-number">6.3.4</span> Taxonomic Classification<a href="qiime-2.html#taxonomic-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="taxonomic-classification" class="section level3 hasAnchor" number="6.3.5">
+<h3><span class="header-section-number">6.3.5</span> Taxonomic Classification<a href="qiime-2.html#taxonomic-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step classifies the representative sequences into taxonomic groups using a pre-trained classifier.</p>
 <p><a href="https://docs.qiime2.org/2024.5/plugins/available/feature-classifier/classify-sklearn/">Qiime 2 Docs</a></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="qiime-2.html#cb23-1" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier classify-sklearn <span class="dt">\</span></span>
-<span id="cb23-2"><a href="qiime-2.html#cb23-2" tabindex="-1"></a>  <span class="at">--i-classifier</span> /mnt/vstor/SOM_PQHS_LXZ716/Reference/QIIME2_Pre-trained_Classifier/silva-138-99-nb-classifier.qza <span class="dt">\</span></span>
-<span id="cb23-3"><a href="qiime-2.html#cb23-3" tabindex="-1"></a>  <span class="at">--i-reads</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza <span class="dt">\</span></span>
-<span id="cb23-4"><a href="qiime-2.html#cb23-4" tabindex="-1"></a>  <span class="at">--o-classification</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="qiime-2.html#cb24-1" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier classify-sklearn <span class="dt">\</span></span>
+<span id="cb24-2"><a href="qiime-2.html#cb24-2" tabindex="-1"></a>  <span class="at">--i-classifier</span> /mnt/vstor/SOM_PQHS_LXZ716/Reference/QIIME2_Pre-trained_Classifier/silva-138-99-nb-classifier.qza <span class="dt">\</span></span>
+<span id="cb24-3"><a href="qiime-2.html#cb24-3" tabindex="-1"></a>  <span class="at">--i-reads</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb24-4"><a href="qiime-2.html#cb24-4" tabindex="-1"></a>  <span class="at">--o-classification</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza</span></code></pre></div>
 <ul>
 <li><code>--i-classifier</code>: Pre-trained classifier file.</li>
 <li><code>--i-reads</code>: Input file with representative sequences.</li>
 <li><code>--o-classification</code>: Output file with taxonomic classification results.</li>
 </ul>
 </div>
-<div id="metadata-visualization" class="section level3 hasAnchor" number="6.3.5">
-<h3><span class="header-section-number">6.3.5</span> Metadata Visualization<a href="qiime-2.html#metadata-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="metadata-visualization" class="section level3 hasAnchor" number="6.3.6">
+<h3><span class="header-section-number">6.3.6</span> Metadata Visualization<a href="qiime-2.html#metadata-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step creates a visualization of the taxonomic classification results, allowing you to review the taxonomy assignments.</p>
 <p><a href="https://docs.qiime2.org/2024.5/tutorials/metadata/">Qiime 2 Docs</a></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="qiime-2.html#cb24-1" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate <span class="dt">\</span></span>
-<span id="cb24-2"><a href="qiime-2.html#cb24-2" tabindex="-1"></a>  <span class="at">--m-input-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza <span class="dt">\</span></span>
-<span id="cb24-3"><a href="qiime-2.html#cb24-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="qiime-2.html#cb25-1" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate <span class="dt">\</span></span>
+<span id="cb25-2"><a href="qiime-2.html#cb25-2" tabindex="-1"></a>  <span class="at">--m-input-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza <span class="dt">\</span></span>
+<span id="cb25-3"><a href="qiime-2.html#cb25-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qzv</span></code></pre></div>
 <ul>
 <li><code>--m-input-file</code>: Input file with metadata to be visualized.</li>
 <li><code>--o-visualization</code>: Output file for the visualization.</li>
@@ -347,14 +375,14 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <div class="figcaption">taxonomy.qzv</div>
 </div>
 </div>
-<div id="feature-table-summary" class="section level3 hasAnchor" number="6.3.6">
-<h3><span class="header-section-number">6.3.6</span> Feature Table Summary<a href="qiime-2.html#feature-table-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="feature-table-summary" class="section level3 hasAnchor" number="6.3.7">
+<h3><span class="header-section-number">6.3.7</span> Feature Table Summary<a href="qiime-2.html#feature-table-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step summarizes the feature table, providing an overview of feature counts per sample and other summary statistics.</p>
 <p><a href="https://docs.qiime2.org/2024.5/tutorials/read-joining/#view-summary-of-deblur-feature-table">Qiime 2 Dosc</a></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="qiime-2.html#cb25-1" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
-<span id="cb25-2"><a href="qiime-2.html#cb25-2" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
-<span id="cb25-3"><a href="qiime-2.html#cb25-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qzv <span class="dt">\</span></span>
-<span id="cb25-4"><a href="qiime-2.html#cb25-4" tabindex="-1"></a>  <span class="at">--m-sample-metadata-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="qiime-2.html#cb26-1" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
+<span id="cb26-2"><a href="qiime-2.html#cb26-2" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
+<span id="cb26-3"><a href="qiime-2.html#cb26-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qzv <span class="dt">\</span></span>
+<span id="cb26-4"><a href="qiime-2.html#cb26-4" tabindex="-1"></a>  <span class="at">--m-sample-metadata-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv</span></code></pre></div>
 <ul>
 <li><code>--i-table</code>: Input feature table file.</li>
 <li><code>--o-visualization</code>: Output file for the summary visualization.</li>
@@ -369,16 +397,16 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <div class="figcaption">table.qzv - Interactive Sample Detail</div>
 </div>
 </div>
-<div id="phylogenetic-tree-construction" class="section level3 hasAnchor" number="6.3.7">
-<h3><span class="header-section-number">6.3.7</span> Phylogenetic Tree Construction<a href="qiime-2.html#phylogenetic-tree-construction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="phylogenetic-tree-construction" class="section level3 hasAnchor" number="6.3.8">
+<h3><span class="header-section-number">6.3.8</span> Phylogenetic Tree Construction<a href="qiime-2.html#phylogenetic-tree-construction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step aligns the sequences, masks the alignment to remove highly variable positions, and constructs a phylogenetic tree for diversity analyses.</p>
 <p><a href="https://docs.qiime2.org/2024.5/plugins/available/phylogeny/align-to-tree-mafft-fasttree/">Qiime 2 Docs</a></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="qiime-2.html#cb26-1" tabindex="-1"></a><span class="ex">qiime</span> phylogeny align-to-tree-mafft-fasttree <span class="dt">\</span></span>
-<span id="cb26-2"><a href="qiime-2.html#cb26-2" tabindex="-1"></a>  <span class="at">--i-sequences</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza <span class="dt">\</span></span>
-<span id="cb26-3"><a href="qiime-2.html#cb26-3" tabindex="-1"></a>  <span class="at">--o-alignment</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/aligned-rep-seqs.qza <span class="dt">\</span></span>
-<span id="cb26-4"><a href="qiime-2.html#cb26-4" tabindex="-1"></a>  <span class="at">--o-masked-alignment</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/masked-aligned-rep-seqs.qza <span class="dt">\</span></span>
-<span id="cb26-5"><a href="qiime-2.html#cb26-5" tabindex="-1"></a>  <span class="at">--o-tree</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unrooted-tree.qza <span class="dt">\</span></span>
-<span id="cb26-6"><a href="qiime-2.html#cb26-6" tabindex="-1"></a>  <span class="at">--o-rooted-tree</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rooted-tree.qza</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="qiime-2.html#cb27-1" tabindex="-1"></a><span class="ex">qiime</span> phylogeny align-to-tree-mafft-fasttree <span class="dt">\</span></span>
+<span id="cb27-2"><a href="qiime-2.html#cb27-2" tabindex="-1"></a>  <span class="at">--i-sequences</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb27-3"><a href="qiime-2.html#cb27-3" tabindex="-1"></a>  <span class="at">--o-alignment</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/aligned-rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb27-4"><a href="qiime-2.html#cb27-4" tabindex="-1"></a>  <span class="at">--o-masked-alignment</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/masked-aligned-rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb27-5"><a href="qiime-2.html#cb27-5" tabindex="-1"></a>  <span class="at">--o-tree</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unrooted-tree.qza <span class="dt">\</span></span>
+<span id="cb27-6"><a href="qiime-2.html#cb27-6" tabindex="-1"></a>  <span class="at">--o-rooted-tree</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rooted-tree.qza</span></code></pre></div>
 <ul>
 <li><code>--i-sequences</code>: Input file with representative sequences.</li>
 <li><code>--o-alignment</code>: Output file for aligned sequences.</li>
@@ -387,15 +415,15 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <li><code>--o-rooted-tree</code>: Output file for rooted phylogenetic tree.</li>
 </ul>
 </div>
-<div id="taxa-bar-plot-visualization" class="section level3 hasAnchor" number="6.3.8">
-<h3><span class="header-section-number">6.3.8</span> Taxa Bar Plot Visualization<a href="qiime-2.html#taxa-bar-plot-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="taxa-bar-plot-visualization" class="section level3 hasAnchor" number="6.3.9">
+<h3><span class="header-section-number">6.3.9</span> Taxa Bar Plot Visualization<a href="qiime-2.html#taxa-bar-plot-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This step creates a bar plot to visualize the taxonomic composition of the samples, providing insights into the relative abundance of different taxa.</p>
 <p><a href="https://docs.qiime2.org/2024.5/plugins/available/taxa/barplot/">Qiime 2 Docs</a></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="qiime-2.html#cb27-1" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot <span class="dt">\</span></span>
-<span id="cb27-2"><a href="qiime-2.html#cb27-2" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
-<span id="cb27-3"><a href="qiime-2.html#cb27-3" tabindex="-1"></a>  <span class="at">--i-taxonomy</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza <span class="dt">\</span></span>
-<span id="cb27-4"><a href="qiime-2.html#cb27-4" tabindex="-1"></a>  <span class="at">--m-metadata-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv <span class="dt">\</span></span>
-<span id="cb27-5"><a href="qiime-2.html#cb27-5" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxa-bar-plots.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="qiime-2.html#cb28-1" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot <span class="dt">\</span></span>
+<span id="cb28-2"><a href="qiime-2.html#cb28-2" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
+<span id="cb28-3"><a href="qiime-2.html#cb28-3" tabindex="-1"></a>  <span class="at">--i-taxonomy</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxonomy.qza <span class="dt">\</span></span>
+<span id="cb28-4"><a href="qiime-2.html#cb28-4" tabindex="-1"></a>  <span class="at">--m-metadata-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv <span class="dt">\</span></span>
+<span id="cb28-5"><a href="qiime-2.html#cb28-5" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/taxa-bar-plots.qzv</span></code></pre></div>
 <ul>
 <li><code>--i-table</code>: Input feature table file.</li>
 <li><code>--i-taxonomy</code>: Input file with taxonomic classification.</li>
@@ -406,6 +434,107 @@ In this example, you might choose –p-trunc-len-f 230 for the forward reads and
 <img src="taxa-bar-plots.png" alt="taxa-bar-plots.qzv" />
 <div class="figcaption">taxa-bar-plots.qzv</div>
 </div>
+</div>
+<div id="alpha-rarefaction-analysis" class="section level3 hasAnchor" number="6.3.10">
+<h3><span class="header-section-number">6.3.10</span> Alpha Rarefaction Analysis<a href="qiime-2.html#alpha-rarefaction-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Alpha rarefaction analysis helps to understand the diversity within a sample. This step generates a rarefaction curve, which is useful for assessing the sampling depth required to capture the diversity within each sample.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="qiime-2.html#cb29-1" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-rarefaction <span class="dt">\</span></span>
+<span id="cb29-2"><a href="qiime-2.html#cb29-2" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
+<span id="cb29-3"><a href="qiime-2.html#cb29-3" tabindex="-1"></a>  <span class="at">--i-phylogeny</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rooted-tree.qza <span class="dt">\</span></span>
+<span id="cb29-4"><a href="qiime-2.html#cb29-4" tabindex="-1"></a>  <span class="at">--p-max-depth</span> 30000 <span class="dt">\</span></span>
+<span id="cb29-5"><a href="qiime-2.html#cb29-5" tabindex="-1"></a>  <span class="at">--m-metadata-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv <span class="dt">\</span></span>
+<span id="cb29-6"><a href="qiime-2.html#cb29-6" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/alpha-rarefaction.qzv</span></code></pre></div>
+<ul>
+<li><code>--i-table</code>: Input feature table file.</li>
+<li><code>--i-phylogeny</code>: Input phylogenetic tree file.</li>
+<li><code>--p-max-depth</code>: Maximum rarefaction depth.</li>
+<li><code>--m-metadata-file</code>: Metadata file associated with the samples.</li>
+<li><code>--o-visualization</code>: Output file for the rarefaction visualization.</li>
+</ul>
+<p><strong>Choosing <code>--p-max-depth</code>:</strong></p>
+<p>The <code>--p-max-depth</code> parameter specifies the maximum sequencing depth for rarefaction. To choose an appropriate value, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Visualize Sequence Depth Distribution:</li>
+</ol>
+<ul>
+<li>Before setting <code>--p-max-depth</code>, examine the sequencing depth distribution using the <code>table.qzv</code> file. This file can be generated with the following command:</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="qiime-2.html#cb30-1" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
+<span id="cb30-2"><a href="qiime-2.html#cb30-2" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
+<span id="cb30-3"><a href="qiime-2.html#cb30-3" tabindex="-1"></a>  <span class="at">--o-visualization</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qzv <span class="dt">\</span></span>
+<span id="cb30-4"><a href="qiime-2.html#cb30-4" tabindex="-1"></a>  <span class="at">--m-sample-metadata-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv</span></code></pre></div>
+<ul>
+<li>Open the resulting <code>table.qzv</code> file in <a href="https://view.qiime2.org/">QIIME 2 View</a> to explore the sequencing depth distribution.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Determine an Appropriate Depth:</li>
+</ol>
+<ul>
+<li>Look at the <code>"Interactive Sample Detail"</code> and <code>"Frequency per sample"</code> plot in the <code>table.qzv</code> visualization. Select a -<code>-p-max-depth</code> value that includes the majority of your samples. This helps ensure that a sufficient number of samples are included in the analysis.</li>
+<li>Avoid setting the depth too high, as this may exclude many samples with lower sequencing depth. Conversely, setting it too low may not fully capture the diversity within each sample.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Example:</li>
+</ol>
+<ul>
+<li>If the frequency plot shows that most samples have around 20,000 sequences, you might choose a –p-max-depth of 20,000 or slightly lower (e.g., 15,000) to include as many samples as possible while still capturing the diversity.</li>
+</ul>
+<p>The resulting visualization (<code>alpha-rarefaction.qzv</code>) allows you to explore the alpha diversity metrics at different sampling depths and helps to determine the adequate sequencing depth for your samples.</p>
+<div class="float">
+<img src="alpha-rarefaction.png" alt="alpha-rarefaction.qzv" />
+<div class="figcaption">alpha-rarefaction.qzv</div>
+</div>
+</div>
+<div id="core-metrics-phylogenetic-analysis" class="section level3 hasAnchor" number="6.3.11">
+<h3><span class="header-section-number">6.3.11</span> Core Metrics Phylogenetic Analysis<a href="qiime-2.html#core-metrics-phylogenetic-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Core metrics phylogenetic analysis computes a range of diversity metrics, including both alpha and beta diversity metrics. The <code>--p-sampling-depth</code> parameter should be chosen based on the results of the alpha rarefaction analysis.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="qiime-2.html#cb31-1" tabindex="-1"></a><span class="ex">qiime</span> diversity core-metrics-phylogenetic <span class="dt">\</span></span>
+<span id="cb31-2"><a href="qiime-2.html#cb31-2" tabindex="-1"></a>  <span class="at">--i-phylogeny</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rooted-tree.qza <span class="dt">\</span></span>
+<span id="cb31-3"><a href="qiime-2.html#cb31-3" tabindex="-1"></a>  <span class="at">--i-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/table.qza <span class="dt">\</span></span>
+<span id="cb31-4"><a href="qiime-2.html#cb31-4" tabindex="-1"></a>  <span class="at">--p-sampling-depth</span> 4000 <span class="dt">\</span></span>
+<span id="cb31-5"><a href="qiime-2.html#cb31-5" tabindex="-1"></a>  <span class="at">--m-metadata-file</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/processed_metadata.tsv <span class="dt">\</span></span>
+<span id="cb31-6"><a href="qiime-2.html#cb31-6" tabindex="-1"></a>  <span class="at">--o-rarefied-table</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/rarefied-table.qza <span class="dt">\</span></span>
+<span id="cb31-7"><a href="qiime-2.html#cb31-7" tabindex="-1"></a>  <span class="at">--o-observed-features-vector</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/observed-features.qza <span class="dt">\</span></span>
+<span id="cb31-8"><a href="qiime-2.html#cb31-8" tabindex="-1"></a>  <span class="at">--o-shannon-vector</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/shannon.qza <span class="dt">\</span></span>
+<span id="cb31-9"><a href="qiime-2.html#cb31-9" tabindex="-1"></a>  <span class="at">--o-evenness-vector</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/evenness.qza <span class="dt">\</span></span>
+<span id="cb31-10"><a href="qiime-2.html#cb31-10" tabindex="-1"></a>  <span class="at">--o-faith-pd-vector</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/faith-pd.qza <span class="dt">\</span></span>
+<span id="cb31-11"><a href="qiime-2.html#cb31-11" tabindex="-1"></a>  <span class="at">--o-unweighted-unifrac-distance-matrix</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unweighted-unifrac-distance-matrix.qza <span class="dt">\</span></span>
+<span id="cb31-12"><a href="qiime-2.html#cb31-12" tabindex="-1"></a>  <span class="at">--o-weighted-unifrac-distance-matrix</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/weighted-unifrac-distance-matrix.qza <span class="dt">\</span></span>
+<span id="cb31-13"><a href="qiime-2.html#cb31-13" tabindex="-1"></a>  <span class="at">--o-jaccard-distance-matrix</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/jaccard-distance-matrix.qza <span class="dt">\</span></span>
+<span id="cb31-14"><a href="qiime-2.html#cb31-14" tabindex="-1"></a>  <span class="at">--o-bray-curtis-distance-matrix</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/bray-curtis-distance-matrix.qza <span class="dt">\</span></span>
+<span id="cb31-15"><a href="qiime-2.html#cb31-15" tabindex="-1"></a>  <span class="at">--o-unweighted-unifrac-pcoa-results</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unweighted-unifrac-pcoa-results.qza <span class="dt">\</span></span>
+<span id="cb31-16"><a href="qiime-2.html#cb31-16" tabindex="-1"></a>  <span class="at">--o-weighted-unifrac-pcoa-results</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/weighted-unifrac-pcoa-results.qza <span class="dt">\</span></span>
+<span id="cb31-17"><a href="qiime-2.html#cb31-17" tabindex="-1"></a>  <span class="at">--o-jaccard-pcoa-results</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/jaccard-pcoa-results.qza <span class="dt">\</span></span>
+<span id="cb31-18"><a href="qiime-2.html#cb31-18" tabindex="-1"></a>  <span class="at">--o-bray-curtis-pcoa-results</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/bray-curtis-pcoa-results.qza <span class="dt">\</span></span>
+<span id="cb31-19"><a href="qiime-2.html#cb31-19" tabindex="-1"></a>  <span class="at">--o-unweighted-unifrac-emperor</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/unweighted-unifrac-emperor.qzv <span class="dt">\</span></span>
+<span id="cb31-20"><a href="qiime-2.html#cb31-20" tabindex="-1"></a>  <span class="at">--o-weighted-unifrac-emperor</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/weighted-unifrac-emperor.qzv <span class="dt">\</span></span>
+<span id="cb31-21"><a href="qiime-2.html#cb31-21" tabindex="-1"></a>  <span class="at">--o-jaccard-emperor</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/jaccard-emperor.qzv <span class="dt">\</span></span>
+<span id="cb31-22"><a href="qiime-2.html#cb31-22" tabindex="-1"></a>  <span class="at">--o-bray-curtis-emperor</span> /mnt/vstor/SOM_PQHS_LXZ716/MicroB2/Analysis_QIIME2/bray-curtis-emperor.qzv</span></code></pre></div>
+<ul>
+<li><code>--i-phylogeny</code>: Input phylogenetic tree file.</li>
+<li><code>--i-table</code>: Input feature table file.</li>
+<li><code>--p-sampling-depth</code>: Depth at which to subsample the feature table for diversity metrics.</li>
+<li><code>--m-metadata-file</code>: Metadata file associated with the samples.</li>
+<li><code>--o-rarefied-table</code>: Output rarefied feature table, used for subsequent diversity analyses.</li>
+<li><code>--o-observed-features-vector</code>: Output vector of observed features, representing the number of unique features (e.g., species) observed in each sample.</li>
+<li><code>--o-shannon-vector</code>: Output vector of Shannon diversity index, a measure of the richness and evenness of species in a community.</li>
+<li><code>--o-evenness-vector</code>: Output vector of Pielou’s evenness, indicating how evenly the individuals are distributed across the different species present.</li>
+<li><code>--o-faith-pd-vector</code>: Output vector of Faith’s Phylogenetic Diversity, a measure of diversity that considers the phylogenetic relationships between species.</li>
+<li><code>--o-unweighted-unifrac-distance-matrix</code>: Output unweighted UniFrac distance matrix, a measure of beta diversity that considers the presence/absence of species and their phylogenetic relationships.</li>
+<li><code>--o-weighted-unifrac-distance-matrix</code>: Output weighted UniFrac distance matrix, similar to unweighted UniFrac but also considering the relative abundance of species.</li>
+<li><code>--o-jaccard-distance-matrix</code>: Output Jaccard distance matrix, a measure of beta diversity based on the presence/absence of species.</li>
+<li><code>--o-bray-curtis-distance-matrix</code>: Output Bray-Curtis distance matrix, a measure of beta diversity that considers the relative abundance of species.</li>
+<li><code>--o-unweighted-unifrac-pcoa-results</code>: Output PCoA results for unweighted UniFrac, used for visualizing the beta diversity.</li>
+<li><code>--o-weighted-unifrac-pcoa-results</code>: Output PCoA results for weighted UniFrac, used for visualizing the beta diversity.</li>
+<li><code>--o-jaccard-pcoa-results</code>: Output PCoA results for Jaccard distance, used for visualizing the beta diversity.</li>
+<li><code>--o-bray-curtis-pcoa-results</code>: Output PCoA results for Bray-Curtis distance, used for visualizing the beta diversity.</li>
+<li><code>--o-unweighted-unifrac-emperor</code>: Output Emperor visualization for unweighted UniFrac, an interactive visualization tool.</li>
+<li><code>--o-weighted-unifrac-emperor</code>: Output Emperor visualization for weighted UniFrac, an interactive visualization tool.</li>
+<li><code>--o-jaccard-emperor</code>: Output Emperor visualization for Jaccard distance, an interactive visualization tool.</li>
+<li><code>--o-bray-curtis-emperor</code>: Output Emperor visualization for Bray-Curtis distance, an interactive visualization tool.</li>
+</ul>
+<p><strong>Choosing –p-sampling-depth:</strong></p>
+<p>The <code>--p-sampling-depth</code> parameter should be chosen based on the results of the alpha rarefaction analysis. In the alpha rarefaction visualization <code>(alpha-rarefaction.qzv)</code>, look at the sequencing depth at which the observed features plateau for most samples. This depth ensures that the diversity metrics are calculated with an adequate number of sequences without excluding too many samples. For example, if the observed features plateau around 4,000 sequences, you might set <code>--p-sampling-depth</code> to 4,000.</p>
 </div>
 </div>
 </div>

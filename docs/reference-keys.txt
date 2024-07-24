@@ -24,3 +24,6 @@ feature-table-summary
 phylogenetic-tree-construction
 taxa-bar-plot-visualization
 convert-bam-to-fastq
+trimming-adapters-from-sequences
+alpha-rarefaction-analysis
+core-metrics-phylogenetic-analysis
